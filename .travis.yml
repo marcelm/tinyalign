@@ -28,12 +28,12 @@ jobs:
       services:
         - docker
       python: "3.6"
-      install: python3 -m pip install twine
+      install: python3 -m pip install Cython setuptools_scm twine
       if: tag IS present
       script:
         - |
-          python3 setup.py sdist
-          ls -l dist/
+          python3 setup.py sdist &&
+          ls -l dist/ &&
           python3 -m twine upload dist/*
 
   allowed_failures:
