@@ -58,7 +58,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     name='alignlib',
-    use_scm_version=True,
+    use_scm_version={'write_to': 'src/alignlib/_version.py'},
     author='Marcel Martin',
     author_email='marcel.martin@scilifelab.se',
     url='https://github.com/marcelm/alignlib/',
@@ -68,9 +68,6 @@ setup(
     license='MIT',
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    extras_require={
-        'dev': ['Cython', 'pytest'],
-    },
     ext_modules=extensions,
     cmdclass={'build_ext': BuildExt, 'sdist': SDist},
     classifiers=[
