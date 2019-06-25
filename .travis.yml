@@ -33,6 +33,7 @@ jobs:
       script:
         - |
           python3 setup.py sdist &&
+          ./buildwheels.sh &&
           ls -l dist/ &&
           python3 -m twine upload dist/*
 
