@@ -58,6 +58,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     name='alignlib',
+    setup_requires=['setuptools_scm'],  # Support pip versions that don't know about pyproject.toml
     use_scm_version={'write_to': 'src/alignlib/_version.py'},
     author='Marcel Martin',
     author_email='marcel.martin@scilifelab.se',
