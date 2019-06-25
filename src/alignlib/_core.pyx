@@ -97,3 +97,22 @@ def edit_distance(s, t, int maxdiff=-1):
         if smallest > maxdiff:
             return smallest
     return costs[m]
+
+
+def hamming_distance(unicode s, unicode t):
+    """
+    Compute hamming distance between two strings. If they do not have the
+    same length, an IndexError is raised.
+
+    Return the number of differences between the strings.
+    """
+    cdef Py_ssize_t m = len(s)
+    cdef Py_ssize_t n = len(t)
+    if m != n:
+        raise IndexError("sequences must have the same length")
+    cdef Py_ssize_t e = 0
+    cdef Py_ssize_t i
+    for i in range(m):
+        if s[i] != t[i]:
+            e += 1
+    return e
