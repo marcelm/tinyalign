@@ -49,8 +49,8 @@ def edit_distance(s, t, int maxdiff=-1):
         m -= 1
         n -= 1
 
-    cdef int result
-    cdef int* costs = <int*>PyMem_Malloc((m + 1) * sizeof(int))
+    cdef unsigned int result
+    cdef unsigned int* costs = <unsigned int*>PyMem_Malloc((m + 1) * sizeof(unsigned int))
     if not costs:
         raise MemoryError()
 
