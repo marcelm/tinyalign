@@ -56,14 +56,12 @@ def edit_distance(s, t, int maxdiff=-1):
         raise MemoryError()
 
     with nogil:
+        for i in range(m + 1):
+            costs[i] = i
         if e == -1:
             # Regular (unbanded) global alignment
-            for i in range(m + 1):
-                costs[i] = i
-
-            # compute columns of the alignment matrix (using unit costs)
             prev = 0
-            for j in range(1, n+1):
+            for j in range(1, n + 1):
                 prev = costs[0]
                 costs[0] += 1
                 for i in range(1, m+1):
@@ -77,8 +75,6 @@ def edit_distance(s, t, int maxdiff=-1):
             result = costs[m]
         else:
             # Banded alignment
-            for i in range(m + 1):
-                costs[i] = i
             smallest = 0
             for j in range(1, n + 1):
                 stop = min(j + e + 1, m + 1)
