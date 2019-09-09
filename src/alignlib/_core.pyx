@@ -1,3 +1,4 @@
+# cython: language_level=3
 from cython.view cimport array as cvarray
 import cython
 
