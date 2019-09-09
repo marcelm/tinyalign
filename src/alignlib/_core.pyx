@@ -20,18 +20,20 @@ def edit_distance(s, t, int maxdiff=-1):
     maxdiff, but which is not necessarily the true edit distance.
     """
     cdef:
-        int m = len(s)  # index: i
-        int n = len(t)  # index: j
+        unsigned int m = len(s)  # index: i
+        unsigned int n = len(t)  # index: j
         int e = maxdiff
-        int i, j, start, stop, c, prev, smallest
+        unsigned int i, j, start, stop, c, smallest
+        unsigned int prev
         bint match
         bytes s_bytes, t_bytes
         char* sv
         char* tv
 
     # Return early if string lengths are too different
-    if e != -1 and abs(m - n) > e:
-        return abs(m - n)
+    cdef unsigned int absdiff = m - n if m > n else n - m
+    if e != -1 and absdiff > e:
+        return absdiff
 
     s_bytes = s.encode() if isinstance(s, unicode) else s
     t_bytes = t.encode() if isinstance(t, unicode) else t
