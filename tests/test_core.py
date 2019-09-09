@@ -22,12 +22,34 @@ STRING_PAIRS = [
     ]
 
 
-random.seed(10)
+def py_edit_distance(s, t):
+    """
+    Pure-Python edit distance
+    """
+    m = len(s)
+    n = len(t)
+
+    costs = list(range(m + 1))
+    for j in range(1, n + 1):
+        prev = costs[0]
+        costs[0] += 1
+        for i in range(1, m + 1):
+            c = min(
+                prev + int(s[i-1] != t[j-1]),
+                costs[i] + 1,
+                costs[i-1] + 1,
+            )
+            prev = costs[i]
+            costs[i] = c
+
+    return costs[-1]
+
 
 def random_string():
-    return ''.join(random.choice('AC') for _ in range(random.randint(0, 10)))
+    return ''.join(random.choice('AC') for _ in range(random.randint(0, 20)))
 
-STRING_PAIRS.extend((random_string(), random_string()) for _ in range(10000))
+
+RANDOM_STRING_PAIRS = [(random_string(), random_string()) for _ in range(10000)]
 
 
 def test_edit_distance():
@@ -37,10 +59,11 @@ def test_edit_distance():
     assert edit_distance('A', 'A') == 0
     assert edit_distance('A', 'AB') == 1
     assert edit_distance('BA', 'AB') == 2
-    for s, t in STRING_PAIRS:
+    for s, t in STRING_PAIRS + RANDOM_STRING_PAIRS:
         assert edit_distance(s, '') == len(s)
         assert edit_distance('', s) == len(s)
         assert edit_distance(s, t) == edit_distance(t, s)
+        assert edit_distance(s, t) == py_edit_distance(s, t)
 
 
 def assert_banded(s, t, maxdiff):
@@ -67,6 +90,7 @@ def test_hamming_distance():
     assert hamming_distance('A', 'A') == 0
     assert hamming_distance('HELLO', 'HELLO') == 0
     assert hamming_distance('ABC', 'DEF') == 3
+    assert hamming_distance('ABCXDEF', 'ABCYDEF') == 1
 
 
 def test_hamming_distance_incorrect_length():
