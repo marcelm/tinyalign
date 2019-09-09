@@ -1,8 +1,11 @@
 # cython: language_level=3
-from cython.view cimport array as cvarray
+
+from cpython.mem cimport PyMem_Malloc, PyMem_Free
+
 import cython
 
 
+@cython.wraparound(False)
 @cython.boundscheck(False)
 def edit_distance(s, t, int maxdiff=-1):
     """
@@ -25,7 +28,6 @@ def edit_distance(s, t, int maxdiff=-1):
     cdef char* sv
     cdef char* tv
 
-
     # Return early if string lengths are too different
     if e != -1 and abs(m - n) > e:
         return abs(m - n)
@@ -47,7 +49,11 @@ def edit_distance(s, t, int maxdiff=-1):
         m -= 1
         n -= 1
 
-    cdef int[:] costs = cvarray(shape=(m+1,), itemsize=sizeof(int), format="i")
+    cdef int result
+    cdef int* costs = <int*>PyMem_Malloc((m + 1) * sizeof(int))
+    if not costs:
+        raise MemoryError()
+
     if e == -1:
         # Regular (unbanded) global alignment
         with nogil:
@@ -67,6 +73,7 @@ def edit_distance(s, t, int maxdiff=-1):
                         costs[i-1] + 1)
                     prev = costs[i]
                     costs[i] = c
+            result = costs[m]
     else:
         # Banded alignment
         with nogil:
@@ -96,8 +103,11 @@ def edit_distance(s, t, int maxdiff=-1):
                 if smallest > maxdiff:
                     break
         if smallest > maxdiff:
-            return smallest
-    return costs[m]
+            result = smallest
+        else:
+            result = costs[m]
+    PyMem_Free(costs)
+    return result
 
 
 def hamming_distance(unicode s, unicode t):
