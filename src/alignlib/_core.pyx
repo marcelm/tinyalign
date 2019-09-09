@@ -66,10 +66,11 @@ def edit_distance(s, t, int maxdiff=-1):
                 costs[0] += 1
                 for i in range(1, m+1):
                     match = sv[i-1] == tv[j-1]
-                    c = min(
-                        prev + 1 - match,
-                        costs[i] + 1,
-                        costs[i-1] + 1)
+                    c = 1 + min(
+                        prev - match,
+                        costs[i],
+                        costs[i-1],
+                    )
                     prev = costs[i]
                     costs[i] = c
             result = costs[m]
@@ -89,10 +90,11 @@ def edit_distance(s, t, int maxdiff=-1):
                     smallest = maxdiff + 1
                 for i in range(start, stop):
                     match = sv[i-1] == tv[j-1]
-                    c = min(
-                        prev + 1 - match,
-                        costs[i] + 1,
-                        costs[i-1] + 1)
+                    c = 1 + min(
+                        prev - match,
+                        costs[i],
+                        costs[i-1],
+                    )
                     prev = costs[i]
                     costs[i] = c
                     smallest = min(smallest, c)
