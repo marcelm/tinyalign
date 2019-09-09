@@ -19,14 +19,15 @@ def edit_distance(s, t, int maxdiff=-1):
     Otherwise, a value is returned that is guaranteed to be greater than
     maxdiff, but which is not necessarily the true edit distance.
     """
-    cdef int m = len(s)  # index: i
-    cdef int n = len(t)  # index: j
-    cdef int e = maxdiff
-    cdef int i, j, start, stop, c, prev, smallest
-    cdef bint match
-    cdef bytes s_bytes, t_bytes
-    cdef char* sv
-    cdef char* tv
+    cdef:
+        int m = len(s)  # index: i
+        int n = len(t)  # index: j
+        int e = maxdiff
+        int i, j, start, stop, c, prev, smallest
+        bint match
+        bytes s_bytes, t_bytes
+        char* sv
+        char* tv
 
     # Return early if string lengths are too different
     if e != -1 and abs(m - n) > e:
