@@ -54,9 +54,9 @@ def edit_distance(s, t, int maxdiff=-1):
     if not costs:
         raise MemoryError()
 
-    if e == -1:
-        # Regular (unbanded) global alignment
-        with nogil:
+    with nogil:
+        if e == -1:
+            # Regular (unbanded) global alignment
             for i in range(m + 1):
                 costs[i] = i
 
@@ -74,9 +74,8 @@ def edit_distance(s, t, int maxdiff=-1):
                     prev = costs[i]
                     costs[i] = c
             result = costs[m]
-    else:
-        # Banded alignment
-        with nogil:
+        else:
+            # Banded alignment
             for i in range(m + 1):
                 costs[i] = i
             smallest = 0
@@ -102,10 +101,10 @@ def edit_distance(s, t, int maxdiff=-1):
                     smallest = min(smallest, c)
                 if smallest > maxdiff:
                     break
-        if smallest > maxdiff:
-            result = smallest
-        else:
-            result = costs[m]
+            if smallest > maxdiff:
+                result = smallest
+            else:
+                result = costs[m]
     PyMem_Free(costs)
     return result
 
