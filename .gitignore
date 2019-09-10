@@ -8,5 +8,5 @@ __pycache__
 /src/*/_*.c
 /src/*/*.so
 /src/*.egg-info/
-/src/alignlib/_version.py
+/src/tinyalignb/_version.py
 /.tox/

@@ -31,7 +31,7 @@ for PYBIN in /opt/python/cp3[67]-*/bin; do
 done
 
 # Bundle external shared libraries into the wheels
-for whl in wheelhouse/alignlib-*.whl; do
+for whl in wheelhouse/tinyalign-*.whl; do
     auditwheel repair "$whl" -w repaired/
 done
 

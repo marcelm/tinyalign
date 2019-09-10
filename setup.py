@@ -26,7 +26,7 @@ def no_cythonize(extensions, **_ignore):
 
 
 extensions = [
-    Extension('alignlib._core', sources=['src/alignlib/_core.pyx']),
+    Extension('tinyalign._core', sources=['src/tinyalign/_core.pyx']),
 ]
 
 
@@ -57,13 +57,13 @@ with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='alignlib',
+    name='tinyalign',
     setup_requires=['setuptools_scm'],  # Support pip versions that don't know about pyproject.toml
-    use_scm_version={'write_to': 'src/alignlib/_version.py'},
+    use_scm_version={'write_to': 'src/tinyalign/_version.py'},
     author='Marcel Martin',
     author_email='marcel.martin@scilifelab.se',
-    url='https://github.com/marcelm/alignlib/',
-    description='Some sequence alignment routines',
+    url='https://github.com/marcelm/tinyalign/',
+    description='Some fast sequence alignment routines',
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='MIT',

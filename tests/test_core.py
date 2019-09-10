@@ -1,4 +1,4 @@
-from alignlib import edit_distance, hamming_distance
+from tinyalign import edit_distance, hamming_distance
 
 import random
 import pytest

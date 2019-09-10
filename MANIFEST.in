@@ -1,4 +1,4 @@
 include README.md
 include LICENSE
-include src/alignlib/*.c
-include src/alignlib/_version.py
+include src/tinyalign/*.c
+include src/tinyalign/_version.py
