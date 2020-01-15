@@ -13,10 +13,10 @@ that parameter is provided, the returned edit distance is anly accurate up to
 value larger than `maxdiff` is returned, but not necessarily the actual edit
 distance.
 
-For computing regular edit distances, you should prefer
-[https://github.com/fujimotos/polyleven](polyleven) as it is faster. When
-`maxdiff` is small enough (what that means depends on your data), this
-module is faster.
+For computing regular edit distances or if your *maxdiff* is less than 4, you
+should prefer [https://github.com/fujimotos/polyleven](polyleven), as that is
+faster in that case. When `maxdiff` is 4 or more, but not too close to the
+length of the shortest string, this module is faster.
 
 ```
 >>> from tinyalign import edit_distance, hamming_distance
