@@ -1,4 +1,5 @@
-[![Travis](https://travis-ci.org/marcelm/tinyalign.svg?branch=master)](https://travis-ci.org/marcelm/tinyalign)
+[![CI](https://github.com/marcelm/tinyalign/actions/workflows/ci.yml/badge.svg)](https://github.com/marcelm/tinyalign/actions/workflows/ci.yml)
+
 
 # tinyalign
 
