@@ -4,10 +4,6 @@ from setuptools import setup, Extension, find_packages
 from distutils.command.sdist import sdist as _sdist
 from distutils.command.build_ext import build_ext as _build_ext
 
-if sys.version_info[:2] < (3, 4):
-    sys.stdout.write("Python 3.4 or later is required\n")
-    sys.exit(1)
-
 
 def no_cythonize(extensions, **_ignore):
     """Change .pyx to .c or .cpp (copied from Cython documentation)"""
@@ -73,6 +69,7 @@ setup(
     package_dir={"": "src"},
     ext_modules=extensions,
     cmdclass={"build_ext": BuildExt, "sdist": SDist},
+    python_requires='>=3.6',
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Science/Research",
