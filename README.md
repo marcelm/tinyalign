@@ -1,4 +1,5 @@
 [![CI](https://github.com/marcelm/tinyalign/actions/workflows/ci.yml/badge.svg)](https://github.com/marcelm/tinyalign/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/tinyalign.svg?branch=main)](https://pypi.python.org/pypi/tinyalign)
 
 
 # tinyalign
