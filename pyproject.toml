@@ -1,2 +1,34 @@
 [build-system]
-requires = ["setuptools", "wheel", "setuptools_scm", "Cython"]
+requires = ["setuptools >= 63", "setuptools_scm[toml] >= 6.2", "Cython >= 0.29.20"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tinyalign"
+authors = [
+    {name = "Marcel Martin", email = "marcel.martin@scilifelab.se"}
+]
+description = "Fast banded edit distance"
+readme = "README.md"
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Cython",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+requires-python = ">=3.7"
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/marcelm/tinyalign/"
+
+[tool.setuptools_scm]
+write_to = "src/tinyalign/_version.py"
+
+[tool.cibuildwheel]
+environment = "CFLAGS=-g0"
+test-command = ["cd {project}; pytest"]
+test-requires = "pytest"
