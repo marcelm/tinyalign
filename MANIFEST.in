@@ -1,3 +1,0 @@
-include README.md
-include LICENSE
-include src/tinyalign/_version.py
