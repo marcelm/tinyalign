@@ -25,6 +25,9 @@ dynamic = ["version"]
 [project.urls]
 "Homepage" = "https://github.com/marcelm/tinyalign/"
 
+[tool.setuptools.exclude-package-data]
+tinyalign = ["*.pyx"]
+
 [tool.setuptools_scm]
 write_to = "src/tinyalign/_version.py"
 
