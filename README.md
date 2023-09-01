@@ -29,3 +29,10 @@ length of the shortest string, this module is faster.
 >>> edit_distance("hello", "world", maxdiff=2)
 3
 ```
+
+
+## Changes
+
+### v0.2.2
+
+* Added type hints
