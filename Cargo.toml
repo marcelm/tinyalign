@@ -1,0 +1,17 @@
+[package]
+name = "tinyalign"
+version = "0.3.0"
+edition = "2024"
+
+[lib]
+name = "tinyalign"
+crate-type = ["cdylib"]
+
+[dependencies]
+# TODO abi3
+#pyo3 = { version = "0.22.5", default-features = false, features = ["macros", "extension-module"] }
+pyo3 = { version = "0.30.1", features = ["extension-module"] }
+
+[profile.release]
+lto = true
+strip = true

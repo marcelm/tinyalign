@@ -33,6 +33,10 @@ length of the shortest string, this module is faster.
 
 ## Changes
 
+### v0.3.0
+
+* Ported the extension module from Cython to Rust using PyO3
+
 ### v0.2.2
 
 * Added type hints

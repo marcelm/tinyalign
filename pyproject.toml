@@ -1,9 +1,10 @@
 [build-system]
-requires = ["setuptools >= 78", "setuptools_scm[toml] >= 6.2", "Cython >= 0.29.20"]
+requires = ["setuptools >= 78", "setuptools-rust"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "tinyalign"
+version = "0.3.0"
 authors = [
     {name = "Marcel Martin", email = "marcel.martin@scilifelab.se"}
 ]
@@ -18,19 +19,18 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
-requires-python = ">=3.9"
-dynamic = ["version"]
+requires-python = ">=3.11"
 
 [project.urls]
 "Homepage" = "https://github.com/marcelm/tinyalign/"
 
-[tool.setuptools.exclude-package-data]
-tinyalign = ["*.pyx"]
-
-[tool.setuptools_scm]
-write_to = "src/tinyalign/_version.py"
+[[tool.setuptools-rust.ext-modules]]
+target = "tinyalign"
 
 [tool.cibuildwheel]
-environment = "CFLAGS=-g0"
+environment = {"CFLAGS"="-g0", "PATH"="$HOME/.cargo/bin:$PATH"}
 test-command = ["cd {project}; pytest"]
 test-requires = "pytest"
+
+[tool.cibuildwheel.linux]
+before-all = "curl -sSf https://sh.rustup.rs | sh -s -- -y"
