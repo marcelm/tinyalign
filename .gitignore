@@ -10,3 +10,4 @@ __pycache__
 /src/*.egg-info/
 /src/tinyalign/_version.py
 /.tox/
+/target

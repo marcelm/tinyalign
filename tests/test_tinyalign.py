@@ -66,6 +66,17 @@ def test_edit_distance():
         assert edit_distance(s, t) == py_edit_distance(s, t)
 
 
+def test_edit_distance_equal_prefixes():
+    assert edit_distance("ACGT", "ACGT") == 0
+    assert edit_distance("ACGTGTA", "ACGT") == 3
+    assert edit_distance("ACGT", "ACGTGTA") == 3
+
+
+def test_edit_distance_equal_suffixes():
+    assert edit_distance("ACGT", "GAGACGT")
+    assert edit_distance("GAGACGT", "ACGT")
+
+
 def assert_banded(s, t, maxdiff):
     banded_dist = edit_distance(s, t, maxdiff=maxdiff)
     true_dist = edit_distance(s, t)

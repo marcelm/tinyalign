@@ -1,9 +1,10 @@
 [build-system]
-requires = ["setuptools >= 63", "setuptools_scm[toml] >= 6.2", "Cython >= 0.29.20"]
+requires = ["setuptools >= 64", "setuptools-rust"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "tinyalign"
+version = "0.3.0"
 authors = [
     {name = "Marcel Martin", email = "marcel.martin@scilifelab.se"}
 ]
@@ -19,17 +20,14 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
-requires-python = ">=3.7"
-dynamic = ["version"]
+requires-python = ">=3.9"
 
 [project.urls]
 "Homepage" = "https://github.com/marcelm/tinyalign/"
 
-[tool.setuptools.exclude-package-data]
-tinyalign = ["*.pyx"]
-
-[tool.setuptools_scm]
-write_to = "src/tinyalign/_version.py"
+[[tool.setuptools-rust.ext-modules]]
+target = "tinyalign"  # TODO The last part of the name (e.g. "_lib") has to match lib.name in Cargo.toml,
+                             # but you can add a prefix to nest it inside of a Python package.
 
 [tool.cibuildwheel]
 environment = "CFLAGS=-g0"
