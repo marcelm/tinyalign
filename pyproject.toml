@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools >= 63", "setuptools_scm[toml] >= 6.2", "Cython >= 0.29.20"]
+requires = ["setuptools >= 78", "setuptools_scm[toml] >= 6.2", "Cython >= 0.29.20"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -9,11 +9,10 @@ authors = [
 ]
 description = "Fast banded edit distance"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Programming Language :: Cython",
     "Programming Language :: Python :: 3",
